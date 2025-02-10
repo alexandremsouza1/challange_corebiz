@@ -6,3 +6,19 @@ Content-Type: application/json
   "username": "john_doe",
   "password": "hashed_password_here"
 }
+
+### Create Task Request
+POST http://localhost:3000/tasks/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTE2NzEwMSwiZXhwIjoxNzM5MTcwNzAxfQ.IPJGv0kAm97g3dFjn2UHPFNdtidFIyM8yrN-a8U7x7s
+
+{
+  "title": "Nova Tarefa 2",
+  "description": "Descrição da tarefa",
+  "dueDate": "2025-01-01",
+  "status": "pending",
+  "userId": 1
+}
+
+
+
