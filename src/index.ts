@@ -3,12 +3,15 @@ import express from 'express';
 import sequelize from './database';
 import authRoutes from './routes/auth.routes';
 import taskRoutes from './routes/task.routes';
+import { setupSwagger } from './swagger';
 
 const app = express();
 app.use(express.json());
 
 app.use('/auth', authRoutes);
 app.use('/tasks', taskRoutes);
+
+setupSwagger(app);
 
 sequelize
   .sync()

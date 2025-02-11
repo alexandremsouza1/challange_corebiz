@@ -1,16 +1,29 @@
+### Register Request
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+
+{
+  "username": "Alexandre 2",
+  "email": "alexandre2@gmail.com",
+  "password": "123456"
+}
+
+
+
 ### Login Request
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "username": "john_doe",
-  "password": "hashed_password_here"
+  "username": "Alexandre 2",
+  "password": "123456"
 }
 
 ### Create Task Request
-POST http://localhost:3000/tasks/create
+POST http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTE2NzEwMSwiZXhwIjoxNzM5MTcwNzAxfQ.IPJGv0kAm97g3dFjn2UHPFNdtidFIyM8yrN-a8U7x7s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
 
 {
   "title": "Nova Tarefa 2",
@@ -19,6 +32,50 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
   "status": "pending",
   "userId": 1
 }
+
+### Get All Tasks Request
+GET http://localhost:3000/tasks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+
+
+### Get Task by ID Request
+GET http://localhost:3000/tasks/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+
+
+### Update Task Request
+PUT http://localhost:3000/tasks/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+{ 
+  "title": "Tarefa Atualizada",
+  "description": "Descrição atualizada",
+  "dueDate": "2025-01-02",
+  "status": "completed",
+  "userId": 1
+}
+
+
+### Delete Task Request
+DELETE http://localhost:3000/tasks/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+
+
+### Complete Task Request
+POST http://localhost:3000/tasks/1/complete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+
+
+### Attach User to Task Request
+POST http://localhost:3000/tasks/1/attach-user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huX2RvZSIsImlhdCI6MTczOTIzMDU2OSwiZXhwIjoxNzM5MjM0MTY5fQ.JYjhkTttyq-ZdsxgBiFRN4htaIoRUgvh3kwWFNwoJIE
+
+{
+  "userId": 2
+}
+
+
+
 
 
 
