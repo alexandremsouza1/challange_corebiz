@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from '../models/user.model';
+import ErrorHandler from '../middlewares/error.handler';
 
 const secretKey = process.env.JWT_SECRET || 'mySecretKey';
 
@@ -35,9 +36,10 @@ class AuthController {
         { expiresIn: '1h' }
       );
   
-      res.json({ token });
+      res.json({ ...newUser.toJSON(), token });
     } catch (error) {
       console.error('Erro ao registrar o usuário:',error);
+      ErrorHandler.handleValidationError(error, res);
       res.status(500).json({ message: 'Erro interno do servidor' });
     }
   }
@@ -64,11 +66,19 @@ class AuthController {
 
       res.json({ token });
     } catch (error) {
-      console.error('Erro ao processar login:', error);
+      ErrorHandler.handleValidationError(error, res);
       next(error);
     }
   }
-  
+
+  static async list(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const users = await User.findAll();
+      res.json(users);
+    } catch (error) {
+      ErrorHandler.handleValidationError(error, res);
+    }
+  }
 }
 
 export default AuthController;

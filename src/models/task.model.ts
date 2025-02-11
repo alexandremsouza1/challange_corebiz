@@ -27,8 +27,11 @@ Task.init(
       allowNull: false,
     },
     dueDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: /^\d{4}-\d{2}-\d{2}$/,
+      },
     },
     status: {
       type: DataTypes.ENUM(...Object.values(TaskStatus)),

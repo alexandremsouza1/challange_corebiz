@@ -1,16 +1,17 @@
 import request from 'supertest';
 import app from '../index';
 import User from '../models/user.model';
+import bcrypt from 'bcrypt';
 
 describe('POST /auth/login', () => {
   it('deve autenticar o usuário e retornar um token', async () => {
-    // Primeiro, cria um usuário na base de dados de testes
+    const password = await bcrypt.hash('password123', 10);
     await User.create({
       username: 'testuser',
-      password: 'password123', // Aqui seria ideal usar bcrypt para senha criptografada
+      email: 'testuser@example.com',
+      password: password,
     });
 
-    // Fazendo a requisição para a rota de login
     const response = await request(app)
       .post('/auth/login')
       .send({
@@ -18,10 +19,8 @@ describe('POST /auth/login', () => {
         password: 'password123',
       });
 
-    // Verificando se o código de status é 200
     expect(response.status).toBe(200);
 
-    // Verificando se o token JWT foi retornado
     expect(response.body.token).toBeDefined();
   });
 
@@ -33,7 +32,6 @@ describe('POST /auth/login', () => {
         password: 'wrongpassword',
       });
 
-    // Verificando se o código de status é 401
     expect(response.status).toBe(401);
     expect(response.body.message).toBe('Credenciais inválidas');
   });

@@ -47,6 +47,15 @@ const router = Router();
  *                 token:
  *                   type: string
  *                   description: Token JWT para autenticação
+ *                 id:
+ *                   type: number
+ *                   description: ID do usuário
+ *                 username:
+ *                   type: string
+ *                   description: Nome de usuário
+ *                 email:
+ *                   type: string
+ *                   description: Email do usuário
  *       400:
  *         description: Erro de validação
  *       500:
@@ -94,6 +103,15 @@ router.post('/register',authMiddleware, AuthController.register);
 
 router.post('/login', AuthController.login);
 //router.post('/logout', AuthController.logout);
+
+/**
+ * @swagger
+ * /auth/list:
+ *   get:
+ *     summary: Listar todos os usuários
+ *     tags: [Auth]
+ */
+router.get('/list',authMiddleware, AuthController.list);
 
 
 export default router;

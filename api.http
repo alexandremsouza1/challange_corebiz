@@ -20,6 +20,11 @@ Content-Type: application/json
   "password": "123456"
 }
 
+## List Users Request
+GET http://localhost:3000/auth/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJBbGV4YW5kcmUgMiIsImlhdCI6MTczOTIzNTMxNiwiZXhwIjoxNzM5MjM4OTE2fQ.FBCi9RPdt-7PZ4TNLQSn8BkTc9T3Gj09fZNPqRBN0yE
+
+
 ### Create Task Request
 POST http://localhost:3000/tasks
 Content-Type: application/json

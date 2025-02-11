@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import Task from '../models/task.model';
 import { TaskStatus } from '../enums/status.enum';
 import ErrorHandler from '../middlewares/error.handler';
+import { Op } from 'sequelize';
 
 
 class TaskController {
@@ -19,7 +20,7 @@ class TaskController {
 
   static async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { status, dueDate, userId } = req.query;
+      const { title,status, dueDate, userId } = req.query;
       const whereClause: any = {};
 
       if (status) {
@@ -34,10 +35,14 @@ class TaskController {
         whereClause.userId = userId;
       }
 
+      if (title) {
+        whereClause.title = { [Op.like]: `%${title}%` };
+      }
+
       const tasks = await Task.findAll({ where: whereClause });
       res.json(tasks);
     } catch (error) {
-      next(error);
+      ErrorHandler.handleValidationError(error, res);
     }
   }
 
@@ -45,9 +50,13 @@ class TaskController {
     try {
       const { id } = req.params;
       const task = await Task.findByPk(id);
+      if (!task) {
+        res.status(404).json({ message: 'Tarefa não encontrada' });
+        return;
+      }
       res.json(task);
     } catch (error) {
-      next(error);
+      ErrorHandler.handleValidationError(error, res);
     }
   }
 
@@ -68,7 +77,7 @@ class TaskController {
       await task.save();
       res.json(task);
     } catch (error) {
-      next(error);
+      ErrorHandler.handleValidationError(error, res);
     }
   }
 
@@ -83,7 +92,7 @@ class TaskController {
       await task.destroy();
       res.json({ message: 'Tarefa deletada com sucesso' });
     } catch (error) {
-      next(error);
+      ErrorHandler.handleValidationError(error, res);
     }
   }
 
@@ -99,7 +108,7 @@ class TaskController {
       await task.save();
       res.json(task);
     } catch (error) {
-      next(error);
+      ErrorHandler.handleValidationError(error, res);
     }
   }
 
@@ -116,7 +125,7 @@ class TaskController {
       await task.save();
       res.json(task);
     } catch (error) {
-      next(error);
+      ErrorHandler.handleValidationError(error, res);
     }
   }
 }
