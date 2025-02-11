@@ -1,9 +1,15 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import express from 'express';
 import sequelize from './database';
 import authRoutes from './routes/auth.routes';
 import taskRoutes from './routes/task.routes';
 import { setupSwagger } from './swagger';
+
+dotenv.config()
+const env = process.env.NODE_ENV || 'development';
+if (env !== 'production') {
+  dotenv.config({ path: '.env.' + env })
+}
 
 const app = express();
 app.use(express.json());
