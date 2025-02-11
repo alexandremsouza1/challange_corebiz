@@ -67,6 +67,23 @@ router.post('/', authMiddleware, TaskController.create);
  *   get:
  *     summary: Listar todas as tarefas
  *     tags: [Tasks]
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *         description: Filtrar por usuario, status
+ *       - in: query
+ *         name: dueDate
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Filtrar por data de vencimento (YYYY-MM-DD)
+ *       - in: query
+ *         name: userId
+ *         schema:
+ *           type: number
+ *         description: Filtrar por ID do usuário responsável
  *     responses:
  *       200:
  *         description: Lista de tarefas recuperada com sucesso
@@ -82,6 +99,18 @@ router.post('/', authMiddleware, TaskController.create);
  *                     description: ID da tarefa
  *                     example: 1
  *                   title:
+ *                     type: string
+ *                     description: Título da tarefa
+ *                   status:
+ *                     type: string
+ *                     description: Status da tarefa
+ *                   dueDate:
+ *                     type: string
+ *                     format: date
+ *                     description: Data de vencimento
+ *                   userId:
+ *                     type: number
+ *                     description: ID do usuário responsável
  *       401:
  *         description: Não autorizado
  *       500:

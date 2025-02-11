@@ -19,7 +19,22 @@ class TaskController {
 
   static async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const tasks = await Task.findAll();
+      const { status, dueDate, userId } = req.query;
+      const whereClause: any = {};
+
+      if (status) {
+        whereClause.status = status;
+      }
+
+      if (dueDate) {
+        whereClause.dueDate = dueDate;
+      }
+
+      if (userId) {
+        whereClause.userId = userId;
+      }
+
+      const tasks = await Task.findAll({ where: whereClause });
       res.json(tasks);
     } catch (error) {
       next(error);
