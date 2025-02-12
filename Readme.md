@@ -122,3 +122,14 @@ Ainda é ncessario mudar manualmente o arquivo src\database\config\config.json o
 
 - Padronização de mensagens de erro
 - Maior cobertura de testes
+- Não consegui resolver o problema de rodar a suite inteira dos testes. Por enquanto rodar separetamente instalando o jest globalmente.
+```bash
+npm install -g jest
+```
+```bash
+npx jest src/tests/auth.test.ts 
+```
+```bash
+npx jest src/tests/task.test.ts 
+```
+
