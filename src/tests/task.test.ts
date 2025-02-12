@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../index';
+import app from '../app';
 import bcrypt from 'bcrypt';
 import User from '../models/user.model';
 
@@ -10,15 +10,15 @@ describe('POST /tasks', () => {
   beforeAll(async () => {
     const password = await bcrypt.hash('password123', 10);
     await User.create({
-      username: 'testuser',
-      email: 'testuser@example.com',
+      username: 'testusertask',
+      email: 'testusertask@example.com',
       password: password,
     });
 
     const response = await request(app)
       .post('/auth/login')
       .send({
-        username: 'testuser',
+        username: 'testusertask',
         password: 'password123',
       });
     token = response.body.token;

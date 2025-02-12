@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../index';
+import app from '../app';
 import User from '../models/user.model';
 import bcrypt from 'bcrypt';
 
