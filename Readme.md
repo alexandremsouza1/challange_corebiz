@@ -98,6 +98,7 @@ npm run seed
 ```
 
 Este passo é necessario para criar o usuario padrao. É com ele que voce vai criar outros usuarios, pois todas as rotas precisam de autenticação.
+Caso esteja com dificuldade de rodar o seed, existe um script sql dentro de docs que voce pode rodar no seu banco de dados.
 
 
 ### Testes
