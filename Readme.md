@@ -38,7 +38,6 @@ Antes de começar, certifique-se de ter os seguintes itens instalados e configur
   Validações de entrada de dados no model utilizando o sequelize-validator.
   Foi utilizado o Jest para testes.
   Foi utilizado o Swagger para documentação da API.
-```
 
 ## Documentação
 
